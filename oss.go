@@ -20,5 +20,19 @@ func Hello() string {
 		return ""
 	}
 
+	bucketName := "xma-rec"
+	bucket, err := client.Bucket(bucketName)
+	if err != nil {
+		fmt.Println("bucket err", err)
+		return ""
+	}
+	fmt.Println("bucket", bucket)
+	lor, err := bucket.ListObjects()
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+	fmt.Println("lor", lor)
+
 	return "Hello World"
 }
