@@ -10,7 +10,7 @@ import (
 func getObjectsFormResponse(lor oss.ListObjectsResult) string {
 	var output string
 	for _, object := range lor.Objects {
-		output += object.Key + "  "
+		output += object.Key + " --- "
 	}
 	return output
 }
@@ -41,6 +41,15 @@ func Hello() string {
 		return ""
 	}
 	fmt.Println("lor", getObjectsFormResponse(lor))
+
+	url, err := bucket.SignURL("everything.png", oss.HTTPGet, 30)
+
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+
+	fmt.Println("url:", url)
 
 	return "Hello World"
 }
