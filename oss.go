@@ -7,6 +7,14 @@ import (
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 )
 
+func getObjectsFormResponse(lor oss.ListObjectsResult) string {
+	var output string
+	for _, object := range lor.Objects {
+		output += object.Key + "  "
+	}
+	return output
+}
+
 // Hello ...
 func Hello() string {
 
@@ -32,7 +40,7 @@ func Hello() string {
 		fmt.Println(err)
 		return ""
 	}
-	fmt.Println("lor", lor)
+	fmt.Println("lor", getObjectsFormResponse(lor))
 
 	return "Hello World"
 }
