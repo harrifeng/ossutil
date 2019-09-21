@@ -2,6 +2,7 @@ package ossutil
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 )
@@ -9,9 +10,9 @@ import (
 // Hello ...
 func Hello() string {
 
-	endpoint := ""
-	accessID := ""
-	accessKey := ""
+	endpoint := os.Getenv("ENDPOINT")
+	accessID := os.Getenv("ACCESS_ID")
+	accessKey := os.Getenv("ACCESS_KEY")
 	client, err := oss.New(endpoint, accessID, accessKey)
 	fmt.Println(client)
 	if err != nil {
